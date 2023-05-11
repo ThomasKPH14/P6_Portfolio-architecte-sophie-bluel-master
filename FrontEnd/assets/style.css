@@ -182,10 +182,22 @@ nav ul {
 
 }
 
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+
 }
+
+nav a:hover {
+	color: #B1663C;
+}
+
 
 li:hover {
 	color: #B1663C;
@@ -222,13 +234,26 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
-/* Etape 1 Réalisation du filtre des travaux le style */
-.categories 
-{
+
+/* */
+.conte {
+	background-color: #FFFEF8;
+}
+
+.contelog {
+	background-color: #FFFEF8;
+	padding-bottom: 200px;
+}
+.logn {
+	font-weight: 600;
+  }
+
+.categories {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 55px;
 }
+
 .category-button {
 	border: 1px solid #1D6154;
 	background-color: transparent;
@@ -239,10 +264,11 @@ li:hover {
 	color: #1D6154;
 	cursor: pointer;
 }
+
 .category-button:hover,
 .category-button:focus {
-  background-color: #1D6154;
-  color: white;
+	background-color: #1D6154;
+	color: white;
 }
 
 .gallery {
@@ -272,6 +298,16 @@ li:hover {
 	margin-bottom: 20px;
 }
 
+/*  */
+.logi {
+	margin-top: 160px;
+}
+
+#contact a {
+	align-self: center;
+}
+
+/*  */
 #contact form {
 	text-align: left;
 	margin-top: 30px;
