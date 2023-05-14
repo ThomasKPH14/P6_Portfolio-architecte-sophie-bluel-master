@@ -36,6 +36,7 @@
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" autocomplete="current-password" />
                 <input type="submit" formaction="http://localhost:5678/api/users/login" value="Se connecter" />
+                <p id="error"></p> <!-- Élément pour afficher les messages d'erreur -->
                 <a href="">Mot de passe oublié</a>
             </form>
         </section>
@@ -50,6 +51,7 @@
             </ul>
         </nav>
     </footer>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
