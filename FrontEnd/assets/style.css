@@ -235,7 +235,7 @@ li:hover {
 	margin-bottom: 1em;
 }
 
-/* */
+/* Add */
 .conte {
 	background-color: #FFFEF8;
 }
@@ -271,6 +271,12 @@ li:hover {
 	color: white;
 }
 
+.logi {
+	margin-top: 160px;
+}
+/* e */
+
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -298,16 +304,12 @@ li:hover {
 	margin-bottom: 20px;
 }
 
-/*  */
-.logi {
-	margin-top: 160px;
-}
 
 #contact a {
 	align-self: center;
 }
 
-/*  */
+
 #contact form {
 	text-align: left;
 	margin-top: 30px;

@@ -12,38 +12,36 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<div class="contelog">
+
 <body>
-    <header>
-        <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">projets</a></li>
-                <li><a href="index.html">contact</a></li>
-                <li class="logn">login</li>
-                <li><a href="https://www.instagram.com"><img src="./assets/icons/instagram.png" alt="Instagram"></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-
-        <section id="contact">
-            <h2 class="logi">Log in</h2>
-            <form action="http://localhost:5678/api/users/login" method="post">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" autocomplete="email" required />
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" autocomplete="current-password" />
-                <input type="submit" formaction="http://localhost:5678/api/users/login" value="Se connecter" />
-                <p id="error"></p> <!-- Élément pour afficher les messages d'erreur -->
-                <a href="">Mot de passe oublié</a>
-            </form>
-        </section>
-        
-
-    </main>
-</div>
+    <div class="contelog">
+        <header>
+            <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">projets</a></li>
+                    <li><a href="index.html">contact</a></li>
+                    <li class="logn">login</li>
+                    <li><a href="https://www.instagram.com"><img src="./assets/icons/instagram.png"
+                                alt="Instagram"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="contact">
+                <h2 class="logi">Log in</h2>
+                <form action="http://localhost:5678/api/users/login" method="post">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" autocomplete="email" required>
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password">
+                    <input type="submit" formaction="http://localhost:5678/api/users/login" value="Se connecter">
+                    <p id="error"></p> <!-- Élément pour afficher les messages d'erreur -->
+                    <a href="">Mot de passe oublié</a>
+                </form>
+            </section>
+        </main>
+    </div>
     <footer>
         <nav>
             <ul>
