@@ -228,6 +228,7 @@ li:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
+	width: 72%;
 }
 
 #portfolio h2 {
@@ -236,11 +237,10 @@ li:hover {
 }
 
 /* Add */
-.conte {
-	background-color: #FFFEF8;
-}
-
-.contelog {
+.connected {
+	padding-top: 40px;
+  }
+.backbei {
 	background-color: #FFFEF8;
 	padding-bottom: 200px;
 }
@@ -274,6 +274,81 @@ li:hover {
 .logi {
 	margin-top: 160px;
 }
+/* Modal ico text */
+.edit-iconun,
+.edit-icondeux,
+.edit-icontrois {
+	cursor: pointer;
+}
+.edit-iconun {
+position: relative;
+top: 376px;
+left: 57px;
+
+}
+.edit-icondeux 
+{
+	position: relative;
+	left: 43.5%;
+	top: 45px;
+}
+.edit-icontrois
+{
+	position: relative;
+	left: 48%;
+	top: 418px;
+}
+.edit
+{
+	width: 15px;
+	height: 15px;
+	padding-right: 5px;
+	position: relative;
+	bottom:-2px;
+}
+/*Menu log  */
+
+
+.containerlog
+{
+	background-color: black;
+	color: white;
+	height: 50px;
+	position: absolute;
+	width: 1140px;
+	top: 0%;
+}
+.containerlog p
+{
+	padding-right: 20px;
+	padding-left: 5px;
+}
+.buttonlog
+{
+	background: #FFFFFF;
+    border-radius: 60px;
+	padding: 8px 20px;
+	border: none;
+	font-weight: 600;
+}
+	
+.logplus
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 9px;
+}
+
+.editlog
+{
+	width: 15px;
+	height: 15px;
+	
+}
+
+
+
 /* e */
 
 
