@@ -80,15 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const editIconUn = document.createElement('span');
         editIconUn.className = 'edit-iconun';
-        editIconUn.id = 'edit-photo-icon';
 
         const editIconDeux = document.createElement('span');
         editIconDeux.className = 'edit-icondeux';
-        editIconDeux.id = 'edit-photo-icon';
 
         const editIconTrois = document.createElement('span');
         editIconTrois.className = 'edit-icontrois';
-        editIconTrois.id = 'edit-photo-icon';
 
         const editImage = document.createElement('img');
         editImage.className = 'edit';

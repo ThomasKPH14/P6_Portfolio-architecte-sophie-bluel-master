@@ -239,14 +239,16 @@ li:hover {
 /* Add */
 .connected {
 	padding-top: 40px;
-  }
+}
+
 .backbei {
 	background-color: #FFFEF8;
 	padding-bottom: 200px;
 }
+
 .logn {
 	font-weight: 600;
-  }
+}
 
 .categories {
 	display: flex;
@@ -274,43 +276,265 @@ li:hover {
 .logi {
 	margin-top: 160px;
 }
+
 /* Modal ico text */
 .edit-iconun,
 .edit-icondeux,
 .edit-icontrois {
 	cursor: pointer;
 }
+
 .edit-iconun {
-position: relative;
-top: 376px;
-left: 57px;
+	position: relative;
+	top: 376px;
+	left: 57px;
 
 }
-.edit-icondeux 
-{
+
+.edit-icondeux {
 	position: relative;
 	left: 43.5%;
 	top: 45px;
 }
-.edit-icontrois
-{
+
+.edit-icontrois {
 	position: relative;
 	left: 48%;
 	top: 418px;
 }
-.edit
-{
+
+.edit {
 	width: 15px;
 	height: 15px;
 	padding-right: 5px;
 	position: relative;
-	bottom:-2px;
+	bottom: -2px;
+}
+
+#modal-btn {
+	position: absolute;
+	top: 57%;
+	left: 58%;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.modal-content {
+	position: fixed;
+	max-width: 100%;
+	width: 560px;
+	height: 850px;
+	max-height: 100%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #FFFFFF;
+	border-radius: 10px;
+	padding: 20px;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+
+
+body.modal-open {
+	overflow: hidden;
+	/* Empêche le défilement de la page */
+}
+
+.modal-title {
+	text-align: center;
+	color: #000000;
+	font-family: 'Work Sans';
+	margin-top: 40px;
+	padding-bottom: 15px;
+}
+
+.cross {
+	position: absolute;
+	top: 32px;
+	right: 35px;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+#content {
+	margin-top: 20px;
+}
+
+.separator {
+	position: absolute;
+	width: 55%;
+	top: 76%;
+	left: 22%;
+	border: 1px solid #B3B3B3;
+}
+
+.add-photos-btn {
+	border: 1px solid #1D6154;
+	background-color: #1D6154;
+	font-family: 'Syne';
+	padding: 8px 30px;
+	margin-right: 10px;
+	border-radius: 60px;
+	font-size: 16px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	left: 37%;
+	top: 82%;
+}
+
+
+.delete-photo-btn {
+	border: none;
+	background: transparent;
+	color: #D65353;
+	font-family: 'Syne';
+	cursor: pointer;
+	position: absolute;
+	top: 90%;
+	left: 41%;
+}
+
+
+
+/* Affiche la modal lorsque le bouton est cliqué */
+#modal.active {
+	display: block;
+}
+
+/* Modal img */
+#content .gallery {
+	width: 95%;
+	margin-right: 0;
+	margin-bottom: 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 0;
+	padding-left: 20px;
+}
+
+#content img {
+	width: 100%;
+	height: auto;
+
+}
+
+/* Modal ico */
+#content .trashh {
+	width: 20%;
+	position: relative;
+	top: 18%;
+	left: 70%;
+	cursor: pointer;
+}
+
+#content .move {
+	width: 20px;
+	position: absolute;
+	top: 17.4%;
+	left: 22%;
+}
+
+/* 2modal */
+.back-button {
+	border: none;
+	background: transparent;
+	position: relative;
+	bottom: 8%;
+	right: 12%;
+}
+
+.blue-field {
+	background-color: #E8F1F6;
+	width: 100%;
+	height: 22%;
+}
+
+.add-button {
+	border: none;
+	border-radius: 60px;
+	padding: 8px 30px;
+	font-weight: 500;
+	cursor: pointer;
+	position: absolute;
+	top: 26%;
+	left: 39%;
+	color: #306685;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	line-height: 16px;
+}
+
+.grpimg {
+	position: absolute;
+	left: 46%;
+	top: 18%;
+}
+
+.formatp {
+	color: #444444;
+	position: absolute;
+	font-size: 11px;
+	top: 31%;
+	left: 43%;
+}
+
+.monform {
+
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+}
+
+.ClasseSelect,
+.ClasseInput {
+
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+	height: 80px;
+}
+
+.monform button {
+	background: #A7A7A7;
+	border-radius: 60px;
+	color: white;
+	font-size: 16px;
+	padding: 8px 30px;
+	width: 45%;
+	justify-content: center;
+	cursor: pointer;
+	border: none;
+	position: absolute;
+	top: 85%;
+	left: 25%;
+	font-family: 'Syne';
+}
+.separatordeux {
+	position: absolute;
+	width: 73%;
+	top: 76%;
+	left: 14%;
+	border: 1px solid #B3B3B3;
 }
 /*Menu log  */
-
-
-.containerlog
-{
+.containerlog {
 	background-color: black;
 	color: white;
 	height: 50px;
@@ -318,40 +542,34 @@ left: 57px;
 	width: 1140px;
 	top: 0%;
 }
-.containerlog p
-{
+
+.containerlog p {
 	padding-right: 20px;
 	padding-left: 5px;
 }
-.buttonlog
-{
+
+.buttonlog {
 	background: #FFFFFF;
-    border-radius: 60px;
+	border-radius: 60px;
 	padding: 8px 20px;
 	border: none;
 	font-weight: 600;
 }
-	
-.logplus
-{
+
+.logplus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding-top: 9px;
 }
 
-.editlog
-{
+.editlog {
 	width: 15px;
 	height: 15px;
-	
+
 }
 
-
-
 /* e */
-
-
 .gallery {
 	width: 100%;
 	display: grid;
