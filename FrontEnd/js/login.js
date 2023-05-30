@@ -21,6 +21,7 @@ document.querySelector('form').addEventListener('submit', async (event) => {
     }
 
     // Appel à l'API de connexion
+    
     const response = await fetch('http://localhost:5678/api/users/login', {
         method: 'POST',
         headers: {
@@ -136,4 +137,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
-
