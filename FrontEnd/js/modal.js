@@ -123,7 +123,6 @@ function createAddPhotoModal() {
   // Champ de sélection de fichier
   const fileLabel = document.createElement('label');
   fileLabel.textContent = '+ Ajouter photo';
-  fileLabel.setAttribute('for', 'file-input');
   fileLabel.classList.add('add-button-text');
   
   const fileInput = document.createElement('input');
@@ -175,7 +174,6 @@ function createAddPhotoModal() {
   modalContentDiv.appendChild(backButton);
   modalContentDiv.appendChild(form);
   modalContentDiv.appendChild(separatorDivdeux);
-  modalContentDiv.appendChild(submitButton);
 
   // Gestionnaire d'événement de soumission du formulaire
   form.addEventListener('submit', function (event) {
@@ -183,7 +181,7 @@ function createAddPhotoModal() {
 
     // Vérification des champs requis
     if (fileInput.files.length === 0 || titleInput.value.trim() === '' || categoryInput.value === '') {
-      // Afficher un message d'erreur ou effectuer une action appropriée lorsque les champs requis ne sont pas remplis
+      // Afficher un message d'erreur 
       console.error('Veuillez remplir tous les champs requis');
       return;
     }

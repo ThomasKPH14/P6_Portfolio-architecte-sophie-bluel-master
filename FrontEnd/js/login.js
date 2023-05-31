@@ -21,7 +21,7 @@ document.querySelector('form').addEventListener('submit', async (event) => {
     }
 
     // Appel à l'API de connexion
-    
+
     const response = await fetch('http://localhost:5678/api/users/login', {
         method: 'POST',
         headers: {
@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     if (token) {
         userSection.style.display = 'block';
+
+        // Masquer l'élément avec l'ID 'login-link'
+        const loginLink = document.getElementById('login-link');
+        if (loginLink) {
+            loginLink.style.display = 'none';
+        }
 
         // Création des éléments HTML de la section utilisateur
         // Ajouter la classe "connected" à l'élément
@@ -96,6 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const modifierText = document.createElement('span');
         modifierText.textContent = 'Modifier';
 
+        const logoutLinkElement = document.createElement('a');
+        logoutLinkElement.href = '#';
+        logoutLinkElement.id = 'logout-link';
+        logoutLinkElement.textContent = 'logout';
+
         // Construction de la structure de la section utilisateur
         logPlus.appendChild(penIcon);
         logPlus.appendChild(modeEditionText);
@@ -116,24 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
         userSection.appendChild(editIconUn);
         userSection.appendChild(editIconDeux);
         userSection.appendChild(editIconTrois);
+        userSection.appendChild(logoutLinkElement);
 
         // Ajout de la section utilisateur à la page
         const mainContent = document.querySelector('main');
         mainContent.prepend(userSection);
-    } else {
-        userSection.style.display = 'none';
-    }
 
-    // Déconnexion de l'utilisateur lors de la fermeture du navigateur
-    window.addEventListener('beforeunload', (event) => {
-        // Vérifier si l'actualisation est due à l'appui sur F5
-        if ((event.clientY < 0) || (event.clientX < 0)) {
+        // Gestionnaire d'événement pour le bouton de déconnexion
+        logoutLinkElement.addEventListener('click', () => {
             // Supprimer le token et l'expiration du local storage
             localStorage.removeItem('token');
             localStorage.removeItem('tokenExpiration');
-        }
-    });
 
-
-
+            // Redirection vers la page de connexion
+            window.location.href = './login.html';
+        });
+    } else {
+        userSection.style.display = 'none';
+    }
 });
