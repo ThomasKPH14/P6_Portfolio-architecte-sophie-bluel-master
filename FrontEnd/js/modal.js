@@ -50,6 +50,7 @@ function fetchWorks() {
     });
 }
 
+
 // Fonction pour créer la modal d'ajout de photo
 function createAddPhotoModal() {
   const modalContentDiv = document.createElement('div');
@@ -82,22 +83,25 @@ function createAddPhotoModal() {
   });
 
   const form = document.createElement('form');
-  form.classList.add('add-photo-form','monform');
+  form.classList.add('add-photo-form', 'monform');
   const titleLabel = document.createElement('label');
   titleLabel.textContent = 'Titre';
   const titleInput = document.createElement('input');
   titleInput.classList.add('ClasseInput');
   titleInput.setAttribute('type', 'text');
   titleInput.setAttribute('name', 'title');
+  titleInput.setAttribute('autocomplete', 'off');
+
   const categoryLabel = document.createElement('label');
   categoryLabel.textContent = 'Catégorie';
   const categoryInput = document.createElement('select');
   categoryInput.classList.add('ClasseSelect');
   categoryInput.setAttribute('name', 'category');
+  categoryInput.setAttribute('autocomplete', 'off');
   const separatorDivdeux = document.createElement('div');
   separatorDivdeux.classList.add('separatordeux');
   const submitButton = document.createElement('button');
-  submitButton.classList.add('button-submit')
+  submitButton.classList.add('button-submit');
   submitButton.textContent = 'Valider';
 
   const blueField = document.createElement('div');
@@ -124,33 +128,31 @@ function createAddPhotoModal() {
   const fileLabel = document.createElement('label');
   fileLabel.textContent = '+ Ajouter photo';
   fileLabel.classList.add('add-button-text');
-  
+
   const fileInput = document.createElement('input');
   fileInput.classList.add('add-button');
   fileInput.setAttribute('type', 'file');
-  fileInput.setAttribute('name', 'photo');
+  fileInput.setAttribute('name', 'image');
   fileInput.setAttribute('accept', 'image/*');
   fileInput.required = true;
 
-  //###############################################//       
-    
+  //###############################################//
 
-    // Ajout des éléments à la div conteneur
-    blueField.appendChild(imagePreview);
-    blueField.appendChild(subtitle);
-    blueField.appendChild(fileInput);
-    blueField.appendChild(fileLabel);
+  // Ajout des éléments à la div conteneur
+  blueField.appendChild(imagePreview);
+  blueField.appendChild(subtitle);
+  blueField.appendChild(fileInput);
+  blueField.appendChild(fileLabel);
 
-    // Ajout de la div conteneur au formulaire
-    
+  // Ajout de la div conteneur au formulaire
 
   // Événement d'écoute du changement de l'input file
   fileInput.addEventListener('change', function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-  
+
     reader.onload = function (event) {
-      imagePreview.src = URL.createObjectURL(file);;
+      imagePreview.src = URL.createObjectURL(file);
       imagePreview.classList.remove('grpimg');
       imagePreview.style.objectFit = 'contain';
       imagePreview.style.width = '100%';
@@ -159,12 +161,12 @@ function createAddPhotoModal() {
       subtitle.style.display = 'none';
       fileInput.style.display = 'none';
     };
-    console.log(reader, "")
-  
+    console.log(reader, '');
+
     reader.readAsDataURL(file);
   });
 
-    //###############################################//       
+  //###############################################//
 
   form.appendChild(fileLabel);
   form.appendChild(fileInput);
@@ -181,63 +183,62 @@ function createAddPhotoModal() {
 
     // Vérification des champs requis
     if (fileInput.files.length === 0 || titleInput.value.trim() === '' || categoryInput.value === '') {
-      // Afficher un message d'erreur 
+      // Afficher un message d'erreur
       console.error('Veuillez remplir tous les champs requis');
       return;
     }
-  
-    const formData = new FormData(form);
-    //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4'; 
+
+    const formData = new FormData();
     const token = localStorage.getItem('token');
-
-    formData.append("image", fileInput.files[0]);
-    formData.append("title", titleInput.value);
-    formData.append("category", categoryInput.value);
-
-    console.log(fileInput, "");
-    console.log(titleInput, "");
-    console.log(categoryInput, "");
     
-
+    formData.append('image', fileInput.files[0]);
+    formData.append('title', titleInput.value);
+    formData.append('category', categoryInput.value.toString());
+    
     fetch('http://localhost:5678/api/works', {
       method: 'POST',
-      body: formData,  
+      body: formData,
       headers: {
-        'Authorization': `Bearer` + token
-      }
+        Authorization: `Bearer ${token}`,
+        'Accept': 'application/json'
+      },
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Photo ajoutée avec succès:', data);
-        
+      .then((response) => {
+        console.log('Réponse du serveur :', response);
+        return response.text(); // format texte
       })
-      .catch(error => {
-        console.error('Erreur lors de l\'ajout de la photo:', error);
+      .then((data) => {
+        console.log('Photo ajoutée avec succès :', data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout de la photo :", error);
+        console.error('Message :', error.message);
+        console.trace('Trace :');
       });
-  
+
     closeModal();
+
   });
 
   // Récupérer les catégories depuis le serveur
   fetch('http://localhost:5678/api/categories', {
     method: 'GET',
   })
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(category => {
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((category) => {
         const option = document.createElement('option');
         option.value = category.id;
         option.textContent = category.name;
         categoryInput.appendChild(option);
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Erreur lors de la récup de données des catégories:', error);
     });
 
   return modalContentDiv;
 }
-
 
 // Gestionnaire d'événement au chargement de la page
 window.addEventListener('load', function () {
@@ -281,26 +282,33 @@ window.addEventListener('load', function () {
     openModal(modalContentDiv);
 
     // Récupérer les données des travaux et générer les éléments d'image
-    fetchWorks().then(worksData => {
-      console.log('Works fetched successfully:', worksData);
-      const gallery = document.createElement('div');
-      gallery.classList.add('gallery');
-    
-      worksData.forEach(work => {
-        const figure = createGalleryItem(work);
-        gallery.appendChild(figure);
+    fetchWorks()
+      .then((worksData) => {
+        console.log('Works fetched successfully:', worksData);
+        const gallery = document.createElement('div');
+        gallery.classList.add('gallery');
+
+        worksData.forEach((work) => {
+          const figure = createGalleryItem(work);
+          gallery.appendChild(figure);
+        });
+
+        const firstFigure = gallery.querySelector('figure');
+        if (firstFigure) {
+          const moveSVG = document.createElement('img');
+          moveSVG.setAttribute('src', './assets/icons/move.svg');
+          moveSVG.setAttribute('class', 'move');
+          firstFigure.appendChild(moveSVG);
+        }
+
+        contentDiv.appendChild(gallery);
+      })
+      .catch((error) => {
+        console.error('Error fetching works:', error);
       });
-    
-      const firstFigure = gallery.querySelector('figure');
-      if (firstFigure) {
-        const moveSVG = document.createElement('img');
-        moveSVG.setAttribute('src', './assets/icons/move.svg');
-        moveSVG.setAttribute('class', 'move');
-        firstFigure.insertBefore(moveSVG, firstFigure.firstChild);
-      }
-      contentDiv.appendChild(gallery);
-    });
   });
+
+
 
   // Gestionnaire d'événement pour le bouton de flèche
   const backButton = document.querySelector('.back-button.back-button-arrow');
