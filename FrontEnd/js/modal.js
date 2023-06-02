@@ -36,7 +36,7 @@ function createGalleryItem(work, id) {
   figure.appendChild(caption);
   
   // Ajout de l'ID en tant qu'attribut personnalisé
-  figure.setAttribute('data-id', id);
+  figure.setAttribute('data-id', work.id);
 
   return figure;
 }
@@ -50,6 +50,7 @@ function fetchWorks() {
     });
 }
 
+// ############# 2 Modal ###################
 
 // Fonction pour créer la modal d'ajout de photo
 function createAddPhotoModal() {
@@ -240,7 +241,7 @@ function createAddPhotoModal() {
   return modalContentDiv;
 }
 
-// Gestionnaire d'événement au chargement de la page
+// Gestionnaire d'événements au chargement de la page
 window.addEventListener('load', function () {
   document.querySelector('.user-section .edit-icontrois').addEventListener('click', function () {
     const modalContentDiv = document.createElement('div');
@@ -290,6 +291,14 @@ window.addEventListener('load', function () {
 
         worksData.forEach((work) => {
           const figure = createGalleryItem(work);
+          figure.addEventListener('click', function () {
+            if (figure.classList.contains('selected')) {
+              figure.classList.remove('selected');
+            } else {
+              figure.classList.add('selected');
+            }
+          });
+
           gallery.appendChild(figure);
         });
 
@@ -306,20 +315,61 @@ window.addEventListener('load', function () {
       .catch((error) => {
         console.error('Error fetching works:', error);
       });
-  });
 
-
-
-  // Gestionnaire d'événement pour le bouton de flèche
-  const backButton = document.querySelector('.back-button.back-button-arrow');
-  if (backButton) {
-    backButton.addEventListener('click', function () {
-      if (modalStack.length > 1) {
-        modalStack.pop();
-        modalDiv.removeChild(modalDiv.lastChild);
-        const previousModal = modalStack[modalStack.length - 1];
-        modalDiv.appendChild(previousModal);
+    // Gestionnaire d'événements au bouton de suppression de la galerie
+    deletePhotoBtn.addEventListener('click', function () {
+      const selectedPhoto = document.querySelector('.gallery .selected');
+      if (selectedPhoto) {
+        // Afficher la boîte de dialogue de confirmation
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+          const photoId = selectedPhoto.dataset.id;
+          deletePhoto(photoId);
+        }
+      } else {
+        console.error('Aucune photo sélectionnée');
       }
     });
+
+    // Gestionnaire d'événement pour le bouton de flèche
+    const backButton = document.querySelector('.back-button.back-button-arrow');
+    if (backButton) {
+      backButton.addEventListener('click', function () {
+        if (modalStack.length > 1) {
+          modalStack.pop();
+          modalDiv.removeChild(modalDiv.lastChild);
+          const previousModal = modalStack[modalStack.length - 1];
+          modalDiv.appendChild(previousModal);
+        }
+      });
+    }
+  });
+
+  // Requête de suppression
+  function deletePhoto(photoId) {
+    const token = localStorage.getItem('token');
+
+    fetch(`http://localhost:5678/api/works/${photoId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json'
+      },
+    })
+      .then((response) => {
+        console.log('Réponse du serveur:', response);
+        if (response.ok) {
+          console.log('Photo supprimée avec succès');
+          // Supprimer la photo de la galerie
+          const selectedPhoto = document.querySelector('.gallery .selected');
+          selectedPhoto.parentNode.removeChild(selectedPhoto);
+        } else {
+          console.error('Erreur lors de la suppression de la photo');
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de la photo :", error);
+        console.error('Message :', error.message);
+        console.trace('Trace :');
+      });
   }
 });

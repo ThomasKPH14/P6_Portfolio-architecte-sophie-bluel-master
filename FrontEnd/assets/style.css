@@ -608,6 +608,10 @@ body.modal-open {
 	padding-left: 5px;
 }
 
+.selected
+{
+	opacity: 0.2;
+}
 .buttonlog {
 	background: #FFFFFF;
 	border-radius: 60px;
